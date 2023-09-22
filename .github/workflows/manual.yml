@@ -6,11 +6,19 @@ on:
       name:
         description: "Who to greet"
         default: "World"
+      approval:
+        description: "Approve to Continue..."
 
 jobs:
     hello:
         runs-on: ubuntu-latest
 
         steps:
+
+        - name: Notify workflow status
+          if: github.event.inputs.approval == 'approved'
+          run: |
+              echo "The workflow has been approved."
+
         - name: Hello Step
           run: echo "Hello ${{ github.event.inputs.name }}"
