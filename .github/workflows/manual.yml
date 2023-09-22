@@ -16,19 +16,13 @@ jobs:
         steps:
 
         - name: Notify workflow status
-          if: github.event.inputs.approval == 'approved'
-          run: |
-              echo "The workflow has been approved."
-
-
-
-        - name: Wait for Approval
           id: approval
-          uses: softprops/action-slack/wait-for-approval@v1
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            approvedText: "Approved"
-  
+          run: |
+              echo ${{ github.events.inputs.approval }}
+
+
+
+ 
         - name: Notify workflow status
           if: steps.approval.outputs.result == 'approved'
           run: |
