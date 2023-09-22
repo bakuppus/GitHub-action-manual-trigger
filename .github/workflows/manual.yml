@@ -15,19 +15,7 @@ jobs:
 
         steps:
 
-        - name: Notify workflow status
-          id: approval
-          run: |
-              echo ${{ github.events.inputs.approval }}
-
-
-
- 
-        - name: Notify workflow status
-          if: steps.approval.outputs.result == 'approved'
-          run: |
-            echo "The workflow has been approved."
-
         - name: Hello Step
+          if: github.events.inputs.approval == 'approved'
           run: echo "Hello ${{ github.event.inputs.name }}"
 
