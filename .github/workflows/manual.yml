@@ -18,6 +18,6 @@ jobs:
         steps:
 
         - name: Hello Step
-          if: ${{ github.event.inputs.approval == 'dev'  || inputs.approval == 'dev' }}
+          if: ${{ github.event.inputs.approval == 'approved'  || inputs.approval == 'approved' }}
           run: echo "Hello ${{ github.event.inputs.name }}"
 
